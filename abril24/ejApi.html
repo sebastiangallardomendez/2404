@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet"  href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/estilos.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <title>Api de Comida</title>
+    <script>
+        $(document).ready(function(){
+            $("#enviar").click(function(){
+                $.get("https://www.themealdb.com/api/json/v1/1/categories.php",function(data){
+                    $.each(data.categories,function(i, item){
+                        $("#categorias").append("<tr><td>" + item.idCategory + "</td><td> " + item.strCategory + 
+                            "</td><td><img src='" + item.strCategoryThumb + "'>" + "<th><td>" + item.strCategoryDescription + "</td></tr>");
+                               
+                    });
+                    
+                });
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>Ejemplo Api comidas</h2>
+        <input type="button" id="enviar" value="Mostrando comidas">
+        <table class="table" id="categorias">
+            <thead>                 <!--creamos un encabezado-->
+                <tr>            <!--creamos una fila-->
+                    <th scope="col">#</th>              <!--creamos una columna-->
+                    <th scope="col">Nombre</th>
+                    <th scope="col">Imagen</th>
+                    <th scope="col">Descripción</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
